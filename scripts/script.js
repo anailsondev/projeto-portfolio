@@ -5,15 +5,16 @@ const body = document.body;
 const temasalvo = localStorage.getItem('tema');
 temaEscuro(temasalvo === 'escuro');
 
-// Função para alternar entre tema claro e escuro
+// Alterna entre os temas claro e escuro
 function temaEscuro(tipo) {
-  if (tipo == true) {
+  if (tipo) {
     body.classList.add('escuro');
-    botao.innerHTML = '<i class="fa-solid fa-sun"></i>';
+    botao.innerHTML = '<i data-lucide="sun" aria-hidden="true"></i>';
   } else {
     body.classList.remove('escuro');
-    botao.innerHTML = '<i class="fa-solid fa-moon"></i>';
+    botao.innerHTML = '<i data-lucide="moon" aria-hidden="true"></i>';
   }
+  lucide.createIcons();
 }
 
 botao.addEventListener('click', () => {
@@ -25,16 +26,13 @@ botao.addEventListener('click', () => {
 // Scroll suave para links de navegação
 const navLinks = document.querySelectorAll('#menu ul a.link');
 navLinks.forEach(link => {
-  link.addEventListener('click', function(e) {
-    e.preventDefault();
+  link.addEventListener('click', function(event) {
+    event.preventDefault();
     const target = document.querySelector(this.getAttribute('href'));
     if (target) {
       const headerHeight = document.querySelector('header').offsetHeight;
       const targetPosition = target.offsetTop - headerHeight - 20;
-      window.scrollTo({
-        top: targetPosition,
-        behavior: 'smooth'
-      });
+      window.scrollTo({ top: targetPosition, behavior: 'smooth' });
     }
   });
 });

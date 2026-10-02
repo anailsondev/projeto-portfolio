@@ -24,6 +24,16 @@
 
 }
 
+body.escuro {
+  --fundo-principal: #222222;
+  --texto: #e0e0e0;
+  --texto-inverso:#333333;
+  --destaque: #ff5522;
+  --destaque-inverso: #a73917;
+  --fundo-card: #444444;
+
+}
+
 body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   line-height: 1.5em;
@@ -38,6 +48,9 @@ header {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
 nav#menu ul {
@@ -55,9 +68,39 @@ nav#menu a {
   transition: background-color 0.5s, color 0.5s;
 }
 
+nav#menu .link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+nav#menu .link svg {
+  display: block;
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: #fff;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 nav#menu a:hover {
   background-color: var(--destaque-inverso);
   color: var(--destaque);
+}
+
+nav#menu .link:hover svg {
+  stroke: #fff;
+}
+
+nav#menu button.link:hover {
+  background-color: var(--destaque-inverso);
 }
 
 main {
@@ -110,12 +153,32 @@ div#social {
 }
 
 div#social a {
-  color: var(--destaque);
+  color: #0077ff;
   transition: color 0.5s;
+  display: inline-flex;
+  align-items: center;
+}
+
+div#social svg {
+  display: block;
+  width: 30px;
+  height: 30px;
+  fill: currentColor;
+}
+
+div#social svg.social-outline {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+}
+
+div#social svg.social-outline .social-dot {
+  fill: currentColor;
+  stroke: none;
 }
 
 div#social a:hover {
-  color: var(--destaque-inverso);
+  color: #005fcc;
 }
 
 section#detalhes {
@@ -132,6 +195,20 @@ article {
 article h2 {
   color: var(--destaque);
   margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.icone-azul {
+  width: 22px;
+  height: 22px;
+  flex: 0 0 22px;
+  fill: none;
+  stroke: #0077ff;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
  #video-container {
@@ -165,6 +242,9 @@ article h2 {
 #skill-container .nome {
   font-weight: bold;
   color: var(--texto);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
 #skill-container .porcent {
@@ -265,6 +345,25 @@ footer a:hover {
 }
 
 @media screen and (min-width: 768px) {
+  main {
+    grid-template-columns: auto 300px 1fr auto;
+
+  }
+
+  section#ficha {
+    grid-column: 2 / 3;
+    height: fit-content;
+    position: sticky;
+    top: 65px;
+
+  }
+
+  section#detalhes {
+    grid-column: 3 / 4;
+
+  }
+
+
   #skill-container {
     grid-template-columns: 1fr 1fr;
   }
@@ -286,3 +385,15 @@ footer a:hover {
   
 }
 
+@media screen and (max-width: 600px) {
+  nav#menu ul {
+    flex-direction: row;
+    gap: 2px;
+  }
+
+  nav#menu .link {
+    min-width: 40px;
+    min-height: 40px;
+    padding: 8px;
+  }
+}
